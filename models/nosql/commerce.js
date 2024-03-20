@@ -25,7 +25,7 @@ const CommerceSchema = new mongoose.Schema(
             type: String,
         },
         id: {
-            type: String,
+            type: Number,
             required: true,
             unique: true
         },
