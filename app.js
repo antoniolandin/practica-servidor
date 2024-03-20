@@ -16,6 +16,9 @@ const port = process.env.PORT ?? 3000
 const dbConnect = require('./config/mongo')
 dbConnect()
 
+// Rutas
+app.use('/api', require('./routes'))
+
 // Escuchamos en el puerto
 app.listen(port, () => {
     console.log(`Servidor escuchando en el puerto ${port}`)
