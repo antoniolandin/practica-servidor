@@ -5,7 +5,7 @@
         "email": "johndoe@proton.me",
         "phone": "123456789",
         "address": "Calle Falsa 123",
-        "id": 1
+        "id": 0
     },
     {
         "name": "Jane Doe",
@@ -13,6 +13,14 @@
         "email": "janedoe@proton.me",
         "phone": "987654321",
         "address": "Calle Falsa 321",
+        "id": 1
+    },
+    {
+        "name": "John Smith",
+        "CIF": "12345678C",
+        "email": "johnsmith@proton.me",
+        "phone": "622334123",
+        "address": "Calle Falsa 123",
         "id": 2
     }
 ]
