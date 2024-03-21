@@ -34,12 +34,17 @@ getCommerces = async (req, res) => {
     else {
         res.send({data})
     }
-    
 }
 
 // 2. Obtener un comercio por su CIF
 getCommerce = async (req, res) => {
-    const { CIF } = req.params
+    const CIF = req.params.CIF
+    
+    if (!CIF) {
+        res.status(400).send({ message: 'Falta el CIF' })
+        return
+    }
+
     const data = await commerceModel.findOne({ "CIF": CIF })
     res.send({data})
 }
