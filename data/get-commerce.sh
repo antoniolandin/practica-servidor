@@ -4,4 +4,4 @@
 API_URL="http://localhost:3000/api/commerces"
 
 # Obtener la lista de comercios
-curl -X GET "$API_URL/true"
+curl -X GET "$API_URL"

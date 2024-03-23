@@ -1,16 +1,5 @@
 const { commerceModel } = require('../models')
 
-const deleteItem = (req, res) => {
-    const { id } = req.params
-    commerceModel.findByIdAndDelete(id, (err, data) => {
-        if (err) {
-            res.status(500).send({ message: 'Error al eliminar el comercio' })
-        } else {
-            res.send({ message: 'Comercio eliminado correctamente' })
-        }
-    })
-}
-
 // 1. Obtener la lista de comercios y, opcionalmente (vía parámetro query), ordenarlos por el CIF ascendentemente
 getCommerces = async (req, res) => {
 
@@ -67,9 +56,66 @@ const saveCommerce = async (req, res) => {
     res.send(data)
 }
 
+// 4. Modificar un comecio a partir de su CIF
+const updateCommerce = async (req, res) => {
+
+    // Obtenemos el CIF del parámetro de la URL
+    const CIF = req.params.CIF
+
+    // Obtenemos el cuerpo de la petición (objeto json del comercio)
+    const { body } = req
+
+    // Buscamos el comercio en la base de datos
+    const data = await commerceModel.findOne({ "CIF": CIF })
+
+    // Si no se ha encontrado el comercio, respondemos con un error
+    if (!data) {
+        res.status(404).send({ message: 'No se ha encontrado el comercio' })
+        return
+    }
+
+    // Actualizamos el comercio en la base de datos
+    const updatedData = await commerceModel.findOneAndUpdate({ "CIF": CIF }, body, { new: true })
+    
+    // Respondemos con el comercio actualizado
+    res.send(updatedData)
+}
+
+//5. Borrar un comercio a partir de su CIF, y permite eligir entre un borrado lógico o físico (via parámetro query)
+const deleteCommerce = async (req, res) => {
+    
+        // Obtenemos el CIF del parámetro de la URL
+        const CIF = req.params.CIF
+    
+        // Obtenemos el parámetro de query
+        const logical = req.query.logical
+    
+        // Buscamos el comercio en la base de datos
+        const data = await commerceModel.findOne({ "CIF": CIF })
+    
+        // Si no se ha encontrado el comercio, respondemos con un error
+        if (!data) {
+            res.status(404).send({ message: 'No se ha encontrado el comercio' })
+            return
+        }
+    
+        // Si el parámetro de query es 'true', borramos lógicamente el comercio
+        if (logical === 'true') {
+            const updatedData = await commerceModel.findOneAndUpdate({ "CIF": CIF }, { "deleted": true }, { new: true })
+            res.send(updatedData)
+        }
+        // Si el parámetro de query es 'false', borramos físicamente el comercio
+        else {
+            const deletedData = await commerceModel.findOneAndDelete({ "CIF": CIF })
+            res.send(deletedData)
+        }
+    }
+
+// Exportamos las funciones 
 module.exports = {
     getCommerces,
     getCommerce,
     saveCommerce,
-    deleteItem,
+    updateCommerce,
+    deleteCommerce,
 }

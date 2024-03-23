@@ -29,6 +29,10 @@ const CommerceSchema = new mongoose.Schema(
             required: true,
             unique: true
         },
+        deleted: {
+            type: Boolean,
+            default: false
+        }
     },
     {
         timestamps: true,
