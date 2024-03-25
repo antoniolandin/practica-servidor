@@ -100,12 +100,6 @@ const deleteCommerce = async (req, res) => {
             return
         }
     
-        // Si el comercio ya ha sido eliminado, respondemos con un error
-        if (data.deleted == 'true') {
-            handleError(res, 'El comercio ya ha sido eliminado')
-            return
-        }
-    
         // Si el parámetro de query es 'true', borramos lógicamente el comercio
         if (logical === 'true') {
             const deletedData = await commerceModel.delete({ "CIF": CIF })
