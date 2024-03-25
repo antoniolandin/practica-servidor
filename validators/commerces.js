@@ -1,6 +1,7 @@
 const { check } = require('express-validator');
 const validateResults = require("../utils/handleValidator")
 
+// En este validator comprobamos que estén todos los campos requeridos y que no estén vacíos
 const validatorCreateCommerce = [
     check('name').exists().notEmpty().withMessage('El nombre es requerido'),
     check('CIF').exists().notEmpty().withMessage('El CIF es requerido'),
