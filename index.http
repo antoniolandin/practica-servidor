@@ -1,0 +1,36 @@
+# Obtener todos los comercios
+GET http://localhost:3000/api/commerces
+
+# Crear un nuevo comercio
+POST http://localhost:3000/api/commerces HTTP/1.1
+Content-Type: application/json
+
+
+{
+    "name": "Charcutería Raul",
+    "CIF": "83211234B",
+    "address": "Calle falsa 32",
+    "phone": "12345563",
+    "email": "raul@proton.me",
+    "id":5
+}
+
+# Actualizar un comercio existente
+PUT http://localhost:3000/api/commerces/83211234B
+Content-Type: application/json
+
+
+{
+    "name": "Charcutería Paco",
+    "CIF": "83211234B",
+    "address": "Calle falsa 32",
+    "phone": "12345563",
+    "email": "paco@paco.es",
+    "id":5
+}
+
+# Obtener un comercio por ID
+GET http://localhost:3000/api/commerces/83211234B
+
+# Eliminar un comercio
+DELETE http://localhost:3000/api/commerces/83211234B
