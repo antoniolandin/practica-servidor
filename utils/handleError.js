@@ -1,5 +1,5 @@
 // Función para manejar los errores de la aplicación
-const error = function (res=null, message, code=403) {
+const handleError = (res=null, message, code=403) => {
 
     // Se imprime el mensaje de error en la consola del servidor
     console.log(message);
@@ -10,4 +10,4 @@ const error = function (res=null, message, code=403) {
     }
 }
 
-module.exports = error;
+module.exports = { handleError }

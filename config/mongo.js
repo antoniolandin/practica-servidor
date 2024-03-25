@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { error } = require('../utils/error')
+const { handleError } = require('../utils/handleError')
 const dbConnect = () => {
 
     // Obtenemos la URI de la base de datos desde las variables de entorno
@@ -13,7 +13,7 @@ const dbConnect = () => {
         mongoose.connect(db_uri)
     }
     catch (error) {
-        error('Error al conectar a la base de datos');
+        handleError('Error al conectar a la base de datos');
     }
     
     // Eventos de conexión
