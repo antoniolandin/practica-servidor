@@ -102,12 +102,12 @@ const deleteCommerce = async (req, res) => {
     
         // Si el parámetro de query es 'true', borramos lógicamente el comercio
         if (logical === 'true') {
-            const updatedData = await commerceModel.findOneAndUpdate({ "CIF": CIF }, { "deleted": true }, { new: true })
-            res.send(updatedData)
+            const deletedData = await commerceModel.delete({ "CIF": CIF })
+            res.send(deletedData)
         }
         // Si el parámetro de query es 'false', borramos físicamente el comercio
         else {
-            const deletedData = await commerceModel.findOneAndDelete({ "CIF": CIF })
+            const deletedData = await commerceModel.deleteOne({ "CIF": CIF })
             res.send(deletedData)
         }
     }

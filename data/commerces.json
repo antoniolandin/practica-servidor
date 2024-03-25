@@ -1,6 +1,6 @@
 [ 
     {
-        "name": "John Doe",
+        "name": "Tacos John",
         "CIF": "12345678A",
         "email": "johndoe@proton.me",
         "phone": "123456789",
@@ -8,7 +8,7 @@
         "id": 0
     },
     {
-        "name": "Jane Doe",
+        "name": "Hermanos Doe",
         "CIF": "87654321B",
         "email": "janedoe@proton.me",
         "phone": "987654321",
@@ -16,7 +16,7 @@
         "id": 1
     },
     {
-        "name": "John Smith",
+        "name": "Churros Smith",
         "CIF": "12345678C",
         "email": "johnsmith@proton.me",
         "phone": "622334123",

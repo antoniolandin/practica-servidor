@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongooseDelete = require('mongoose-delete');
 
 // Definimos el esquema de la colección "commerces"
 const CommerceSchema = new mongoose.Schema(
@@ -28,10 +29,6 @@ const CommerceSchema = new mongoose.Schema(
             type: Number,
             required: true,
             unique: true
-        },
-        deleted: {
-            type: Boolean,
-            default: false
         }
     },
     {
@@ -39,6 +36,9 @@ const CommerceSchema = new mongoose.Schema(
         versionKey: false
     }
 );
+
+// Añadimos el plugin que enlaza el borrado lógico con el borrado físico y añade el campo deleted
+CommerceSchema.plugin(mongooseDelete, { overrideMethods: 'all'});
 
 // "commerces" será el nombre de la colección en la base de datos
 module.exports = mongoose.model('commerces', CommerceSchema);
