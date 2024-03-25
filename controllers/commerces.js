@@ -1,4 +1,5 @@
 const { commerceModel } = require('../models')
+const { error } = require('../utils/error')
 
 // 1. Obtener la lista de comercios y, opcionalmente (vía parámetro query), ordenarlos por el CIF ascendentemente
 getCommerces = async (req, res) => {
@@ -27,7 +28,7 @@ getCommerce = async (req, res) => {
     
     // Si no se ha pasado el CIF, respondemos con un error
     if (!CIF) {
-        res.status(400).send({ message: 'Falta el CIF' })
+        error(res, 'No se ha pasado el CIF')
         return
     }
     
@@ -36,7 +37,7 @@ getCommerce = async (req, res) => {
 
     // Si no se ha encontrado el comercio, respondemos con un error
     if (!data) {
-        res.status(404).send({ message: 'No se ha encontrado el comercio' })
+        error(res, 'No se ha encontrado el comercio')
         return
     }
 
@@ -70,7 +71,7 @@ const updateCommerce = async (req, res) => {
 
     // Si no se ha encontrado el comercio, respondemos con un error
     if (!data) {
-        res.status(404).send({ message: 'No se ha encontrado el comercio' })
+        error(res, 'No se ha encontrado el comercio')
         return
     }
 
@@ -95,7 +96,7 @@ const deleteCommerce = async (req, res) => {
     
         // Si no se ha encontrado el comercio, respondemos con un error
         if (!data) {
-            res.status(404).send({ message: 'No se ha encontrado el comercio' })
+            error(res, 'No se ha encontrado el comercio')
             return
         }
     
